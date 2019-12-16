@@ -1,0 +1,318 @@
+<!DOCTYPE html>b 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Past Papers of Vavuniya Campus</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Load icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .input-group-text{
+                min-width: 8.8rem;
+            }
+
+
+        </style>
+    </head>
+
+    <body class="bg-light">
+        <div class="container" style="margin-top: 4em;">
+            <div class="row">
+                <div class="col-12">
+
+                    <img class="img-fluid mx-auto d-block"  src="http://www.lib.jfn.ac.lk/wp-content/uploads/2018/07/new-hededer.png"/>
+
+
+                    <hr class="my-4">
+
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 my-4">
+
+
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="txtlevelid">Select Level:</label>
+                                    </div>
+                                    <select onchange="showSubjects()" name="txtlevelid" id="txtlevelid" class="custom-select">
+                                        <option disabled selected>Level Not Selected</option>
+                                        <option value="1"> Level 1</option>
+                                        <option value="2"> Level 2</option>
+                                        <option value="3"> Level 3</option>
+                                        <option value="4"> Level 4</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="txtsemesterid">Select Semester:</label>
+                                    </div>
+                                    <select onchange="showSubjects()" name="txtsemesterid" id="txtsemesterid" class="custom-select">
+                                        <option disabled selected>Semester Not Selected</option>
+                                        <option value="1"> Semester 1</option>
+                                        <option value="2"> Semester 2</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Academic Years :</label>
+
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input yearcheckboxes" value="2014/2015" id="year20142015">
+                                            <label class="custom-control-label" for="year20142015">2014/2015</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input yearcheckboxes" value="2015/2016" id="year20152016">
+                                            <label class="custom-control-label" for="year20152016">2015/2016</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input yearcheckboxes" value="2016/2017" id="year20162017">
+                                            <label class="custom-control-label" for="year20162017">2016/2017</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input yearcheckboxes" value="2017/2018" id="year20172018">
+                                            <label class="custom-control-label" for="year20172018">2017/2018</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 my-4">
+
+
+
+                                <div class="input-group mb-3">
+                                    <input type="text" placeholder="Search.." name="search" id="searchinput" onkeyup="filterSubjects()" class="form-control" autocomplete="off">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-primary" onclick="filterSubjects()"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+
+
+                                <label class="text-monospace" >Selected courses:</label>
+
+                                <ul id="subjectsdiv1"></ul>
+
+                                <button type="button" class="btn btn-outline-dark" onclick="openLinks()">Download</button>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            const searchinput = document.querySelector('#searchinput');
+
+            const subjects = {
+                "lvl_1": {
+                    "sem_1": [
+                        "Discrete structure(ICT1113)",
+                        "Fundamentals For Computer Systems(ICT1122)",
+                        "Introduction to Program Design and Programming(ICT1132)",
+                        "Object Oriented Program Design(ICT1142)",
+                        "Practial for Fundamentals For Computer Systems(ICT1152)",
+                        "Practial for Introduction to Program Design and Programming(ICT1162)",
+                        "Practial for Object Oriented Program Design(ICT1172)",
+                        "English Language-I(ACU1110)"
+                    ],
+                    "sem_2": [
+                        "Data structures(ICT1213)",
+                        "Basic Electronics and Digital Logic Design(ICT1223)",
+                        "Operating System(ICT1233)",
+                        "Practial for Data structures(ICT1242)",
+                        "Practial for Basic Electronics and Digital Logic Design(ICT1252)",
+                        "Practial for Operating System(ICT1262)",
+                        "Communication Skills(ACU1210)",
+                        "SrLankan Studies, Social Harmany and Natural Resources of SL(ICT1220)"
+                    ]
+                },
+                "lvl_2": {
+                    "sem_1": [
+
+                        "Mathematics For Computing(ICT2113)",
+                        "Design and Analysis of Algorithm(ICT2122)",
+                        "Visual Computing(Rapid Application Development)(ICT2142)",
+                        "Software Engineering(ICT2133)",
+                        "Practial for Visual Computing(Rapid Application Development)(ICT2172)",
+                        "Practial for Software Engineering(ICT2161)",
+                        "Practial for Design and Analysis of Algorithm(ICT2152)",
+                        "English Language-II(ICT2110)"
+                    ],
+                    "sem_2": [
+
+                        "Operational Research(ICT2212)",
+                        "Database Design(ICT2222)",
+                        "Computer Networks(ICT2232)",
+                        "Computer Graphics(ICT2243)", "Management Information System(ICT2252)",
+                        "Practial for Database Design(ICT2262)",
+                        "Practial for Computer Networks(ICT2272)",
+                        "Career Guidence(ICT2210)"
+                    ]
+                },
+                "lvl_3": {
+                    "sem_1": [
+                        "Adavnced Database Management Systems(ICT3113)",
+                        "Project Management(ICT3122)",
+                        "Project(ICT3133)",
+                        "Human Computer Interaction(ICT3142)",
+                        "Server Management(ICT3152)",
+                        "Practial for Adavnced Database Management Systems(ICT3162)",
+                        "Practial for Human Computer Interaction(ICT3171)",
+                        "Management and Entrepreneurial Skills(ICT3110)"
+                    ],
+                    "sem_2": [
+
+                        "Knowladge Based System(KBS) and Logic Programming(ICT3213)",
+                        "Internet Security(ICT3222)",
+                        "Multimedia and web development(ICT3232)",
+                        "Internet Computing(ICT3242)",
+                        "Practial for Knowladge Based System(KBS) and Logic Programming(ICT3252)",
+                        "Practial for Multimedia and web development(ICT3262)",
+                        "Practial for Internet Computing(ICT3272)"
+                    ]
+
+
+
+                },
+                "lvl_4": {
+                    "sem_1": [
+                        "Computer Architecture and Assembly Language Programmig(ICT4113)",
+                        "Bio Informatics and Computational Biology(ICT4122)",
+                        "Mobile Computing(ICT4132)",
+                        "Adavnced Computer Networks(ICT4142)",
+                        "E-Commerce(ICT4152)",
+                        "Practial for Computer Architecture and Assembly Language Programmig(ICT4161)",
+                        "Practial for Bio Informatics and Computational Biology(ICT4171)",
+                        "Practial for Mobile Computing(ICT4181)",
+                        "Practial for E-Commerce(Ict4191)"
+
+                    ],
+                    "sem_2": [
+                        "Parallel and Clustr Computing(ICT4213)",
+                        "Adavnced Networking Technologies I(Routing)(ICT4222)",
+                        "Adavnced Networking Technologies II(Switching)(ICT4232)",
+                        "Agent Technology(ICT4242)",
+                        "Management Information System(ICT4252)",
+                        "Practial for Parallel and Clustr Computing(ICT4261)",
+                        "Practial for Adavnced Networking Technologies I(Routing)(ICT4271)",
+                        "Practial for Adavnced Networking Technologies II(Switching)(ICT4281)",
+                        "Practial for Agent Technology(Ict4291)"
+                    ]
+                }
+            };
+
+            function showSubjects() {
+                let lev = document.getElementById("txtlevelid").value;
+                let semi = document.getElementById("txtsemesterid").value;
+
+                if (lev === "Level Not Selected" || semi === "Semester Not Selected") {
+                    return;
+                }
+
+                let subjectsdiv1 = document.querySelector("#subjectsdiv1");
+                subjectsdiv1.innerHTML = "";
+                let subs = subjects["lvl_" + lev]["sem_" + semi];
+                for (let ss in subs) {
+                    let s = subs[ss];
+
+
+                    let anInput = document.createElement('input');
+                    anInput.type = 'checkbox';
+                    anInput.className = 'custom-control-input subject-element';
+                    anInput.value = s;
+                    anInput.id = new Date().getTime() + "" + ss;
+
+                    let aLabel = document.createElement('label');
+                    aLabel.className = 'custom-control-label';
+                    aLabel.htmlFor = anInput.id;
+                    aLabel.innerHTML = s;
+
+                    let aDiv = document.createElement('div');
+                    aDiv.className = 'custom-control custom-checkbox';
+                    aDiv.appendChild(anInput);
+                    aDiv.appendChild(aLabel);
+
+                    let aLi = document.createElement('li');
+                    aLi.appendChild(aDiv);
+
+
+                    subjectsdiv1.appendChild(aLi);
+
+                }
+
+                filterSubjects();
+
+            }
+
+            function filterSubjects() {
+                let subjectdivs = document.querySelectorAll('input.subject-element');
+
+                for (let ii = 0; ii < subjectdivs.length; ii++) {
+                    let i = subjectdivs[ii];
+
+
+                    if (!i.value.toLowerCase().includes(searchinput.value.toLowerCase())) {
+                        i.parentNode.parentNode.style.display = 'none';
+                    } else {
+                        i.parentNode.parentNode.style.removeProperty('display');
+                    }
+
+
+                }
+            }
+
+            function openLinks() {
+                let subjectdivs = document.querySelectorAll('input.subject-element:checked');
+                let yearcheckboxes = document.querySelectorAll('input.yearcheckboxes:checked');
+
+
+                for (let i = 0; i < yearcheckboxes.length; i++) {
+                    let ii = yearcheckboxes[i];
+
+                    for (let ik = 0; ik < subjectdivs.length; ik++) {
+                        let iik = subjectdivs[ik];
+
+
+
+                        console.log(iik.value + " " + ii.value);
+
+//                        window.open("link", '_blank');
+
+                    }
+
+
+
+
+
+                }
+
+
+            }
+
+
+        </script>
+    </body>
+</html>
